@@ -34,7 +34,7 @@ do_extract_caldata() {
 		caldata_extract_mmc "factory" 0x0 0x1000
 		;;
 	clx,s20l)
-		FIRMWARE=MT7986_iPAiLNA_EEPROM_AX4200.bin
+		FIRMWARE=MT7986_ePAeLNA_EEPROM_ONEADIE_DBDC.bin
 		caldata_validate && exit 0
 		caldata_extract_mmc "factory" 0x0 0x1000
 		;;
