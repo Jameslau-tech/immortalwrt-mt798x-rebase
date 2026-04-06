@@ -6,6 +6,7 @@ INDEX0_init_compatible=mtwifi;mtwifi
 INDEX0_EEPROM_offset=0x0
 INDEX0_EEPROM_size=0x5000
 INDEX0_EEPROM_name=e2p
+EFuseFile=/lib/firmware/MT7986_ePAeLNA_EEPROM_ONEADIE_DBDC.bin
 INDEX0_main_ifname=ra0;rax0
 INDEX0_ext_ifname=ra;rax
 INDEX0_wds_ifname=wds;wdsx
