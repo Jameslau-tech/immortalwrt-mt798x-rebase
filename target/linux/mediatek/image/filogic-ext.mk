@@ -1,3 +1,13 @@
+define Device/clx_s20m
+  DEVICE_VENDOR := CLX
+  DEVICE_MODEL := S20m
+  DEVICE_DTS := mt7986a-clx-s20m
+  DEVICE_DTS_DIR := ../dts-ext
+  DEVICE_PACKAGES := kmod-usb3 automount f2fsck mkf2fs e2fsprogs
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += clx_s20m
+
 define Device/clx_s20l
   DEVICE_VENDOR := CLX
   DEVICE_MODEL := S20L
