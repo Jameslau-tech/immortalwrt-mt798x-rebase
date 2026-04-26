@@ -60,7 +60,7 @@ if [ -n "$cpu_temp" ]; then
 elif [ -n "$wifi_temp" ] && [ "$wifi_temp" != "unknown" ]; then
 	echo -n "WiFi: $wifi_temp"
 else
-	echo -n "No temperature info"
+	echo -n " "
 fi
-	echo -n "No temperature info"
+	echo -n " "
 fi
