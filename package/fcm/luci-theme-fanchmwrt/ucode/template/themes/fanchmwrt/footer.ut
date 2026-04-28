@@ -3,8 +3,7 @@
 		</div>
 		<footer>
 			<span>
-				Powered by
-				FanchmWrt
+				Powered by JWRT
 				/
 				<a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">
 					{{ version.luciname }} ({{ version.luciversion }})</a>
