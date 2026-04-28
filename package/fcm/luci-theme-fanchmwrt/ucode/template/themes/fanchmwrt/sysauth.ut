@@ -29,7 +29,7 @@
 
 	{% if (fuser): %}
 	<div class="alert-message error">
-		{{ _('Invalid username and/or password! Please try again.') }}
+		{{ _('Invalid username or password! Please try again.') }}
 	</div>
 	{% endif %}
 
