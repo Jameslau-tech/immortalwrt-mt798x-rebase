@@ -62,5 +62,3 @@ elif [ -n "$wifi_temp" ] && [ "$wifi_temp" != "unknown" ]; then
 else
 	echo -n " "
 fi
-	echo -n " "
-fi
