@@ -21,7 +21,7 @@
 <html lang="{{ dispatcher.lang }}" {{ theme_mode && theme_mode.value == 1 ? `data-darkmode="true"` : 'false' }}>
 	<head>
 		<meta charset="utf-8">
-		<title>FanchmWrt</title>
+		<title>JWRT</title>
 		{% if (!darkpref): %}
 			<script>
 				var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)'),
