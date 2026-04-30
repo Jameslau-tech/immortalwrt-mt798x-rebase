@@ -1,0 +1,15 @@
+#!/bin/sh
+# Ensure the target directory exists
+mkdir -p /opt
+
+# Configure the mount point /dev/mmcblk0p6 via UCI
+uci -q batch <<EOF
+delete fstab.@mount[0]
+add fstab mount
+set fstab.@mount[-1].target='/opt'
+set fstab.@mount[-1].device='/dev/mmcblk0p6'
+set fstab.@mount[-1].enabled='1'
+commit fstab
+EOF
+
+exit 0
