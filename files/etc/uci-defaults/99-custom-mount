@@ -1,15 +1,31 @@
 #!/bin/sh
-# Ensure the target directory exists
-mkdir -p /opt
 
-# Configure the mount point /dev/mmcblk0p6 via UCI
-uci -q batch <<EOF
-delete fstab.@mount[0]
-add fstab mount
-set fstab.@mount[-1].target='/opt'
-set fstab.@mount[-1].device='/dev/mmcblk0p6'
-set fstab.@mount[-1].enabled='1'
-commit fstab
+# Wait for the kernel to initialize block devices
+sleep 2
+# 1. Find the largest partition on mmcblk0
+# -l: list format, -b: size in bytes, -n: no headings, -o: output NAME and SIZE
+# We grep -v to exclude the parent device itself, then sort by size (column 2)
+LARGEST_PART=$(lsblk -lbno NAME,SIZE /dev/mmcblk0 | grep -v "mmcblk0$" | sort -k2 -rn | head -n1 | awk '{print $1}')
+
+if [ -n "$LARGEST_PART" ]; then
+    # 2. Get the UUID for the identified partition
+    UUID=$(block info | grep "/dev/$LARGEST_PART" | grep -oE 'UUID="[^"]+"' | cut -d'"' -f2)
+
+    if [ -n "$UUID" ]; then
+        # 3. Create /opt and configure fstab via UCI
+        mkdir -p /opt
+
+        uci -q batch <<EOF
+        delete fstab.emmc_opt
+        set fstab.emmc_opt=mount
+        set fstab.emmc_opt.uuid="$UUID"
+        set fstab.emmc_opt.target='/opt'
+        set fstab.emmc_opt.enabled='1'
+        commit fstab
 EOF
+        # 4. Trigger the mount immediately
+        /sbin/block mount
+    fi
+fi
 
 exit 0
